@@ -2,15 +2,18 @@
   "name": "mole-game",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
     "build": "vite build",
+    "dev": "vite",
     "preview": "vite preview --port 5050"
   },
   "dependencies": {
+    "@quasar/extras": "^1.0.0",
+    "quasar": "^2.0.0",
     "vue": "^3.2.33"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.3.1",
-    "vite": "^2.9.5"
+    "vite": "^2.9.5",
+    "vue-cli-plugin-quasar": "~5.0.1"
   }
 }

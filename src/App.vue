@@ -1,97 +1,54 @@
-<script>
-import Mole from "./components/Mole.vue";
-import list from "./components/list.vue";
+<template>
+  <q-layout view="lHh Lpr lFf">
+    <q-header elevated class="glossy">
+      <q-toolbar>
+ 
 
+        <q-toolbar-title>
+          Quasar App
+        </q-toolbar-title>
+
+        <div>Quasar v{{ $q.version }}</div>
+      </q-toolbar>
+    </q-header>
+
+ 
+
+    <q-page-container>
+      <div class="q-pa-md"> 
+        <div class="row">
+          <div class="col-6">
+            <Mole :list_adds="record_list" />
+          </div>
+          <div class="col-6">
+            <list :list_adds="record_list" />
+          </div> 
+        </div>
+      </div>
+             
+    </q-page-container> 
+  </q-layout>   
+</template>  
+  
+<script>
+import Mole from './components/Mole.vue'
+import list from './components/list.vue'
+import { ref } from 'vue' //vue에서 ref import 해옴
+ 
 export default {
-  components: {
+  name: 'LayoutDefault',
+    
+  components: {  
     Mole,
     list,
-  },
-  data() {
-    return {
-      record_list: [],  //부모로 빈 배열만 가지고 있고
-    };
   },   
-}; 
-</script>       
-   
-<template>
-  <main>
-    <!-- list값 각각 컴포넌트에 바인딩 -->
-    <Mole :list_adds="record_list" /> 
-  </main>
-
-  <main>
-    <list :list_adds="record_list" />
-  </main>
-</template> 
  
-<style>
-@import "./assets/base.css";
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-
-  font-weight: normal;
+  setup () { 
+    //setup() 안에서 데이터 생성/ ref(데이터) 함수 사용
+    //모든 데이터를 refrence data type로 감싸야 실시간으로 반영
+    //return 하면 template에서 사용 가능
+    const record_list = ref([]) 
+    return { record_list }  
+  }  
 }
-
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-/* a, */
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-}
-
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
-}
-
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
-
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-  #mmmm {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
-  }
-}
-</style>
+</script> 
